@@ -1,0 +1,23 @@
+{
+    "name": "whistle",
+    "version": "1.0.0",
+    "description": "API server for a social media app POC",
+    "keywords": [],
+    "homepage": "",
+    "license": "MIT",
+    "author": "vizsatiz <satis.vishnu@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/madhums/node-express-mongoose-demo.git"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "dependencies": {
+        "mongoose": "~4.13.5",
+        "bluebird": "~3.5.1"
+    },
+    "devDependencies": {
+        "mocha": "~4.0.1"
+    }
+}
