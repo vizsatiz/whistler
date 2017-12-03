@@ -1,27 +1,58 @@
 var mongoose = require('mongoose');
-var schemaManager = require('./schemaManager.js')
+var schemaManager = require('./schemaManager.js');
 
-var ormManager = function(modelName){
+var ORMObject = function(modelName) {
     
     // init model
     this._model = mongoose.model(modelName, 
                                  schemaManager.getSchemaByName(modelName));
     
-    // create a user record and save to db.
+    // create an object record and save to db.
     this.create = function(record, onSuccess, onFailure) {
-        (new this._model(record)).save(function (error, user) {
+        (new this._model(record)).save(function (error, record) {
             if (error) onFailure(error);
-            onSuccess(user);
+            onSuccess(record);
         });
     }
     
-    // update a user record and save to db.
-    this.updateById = function(id, record, options, onSuccess, onFailure) {
-        this._model.findByIdAndUpdate(id, record, options, function (error, user) {
+    // update an object record and save to db.
+    this.update = function(query, record, options, onSuccess, onFailure) {
+        this._model.findOneAndUpdate(query, record, options, function (error, record) {
             if (error) onFailure(error);
-            onSuccess(user);
+            onSuccess(record);
+        });
+    }  
+    
+    // read an object record from db
+    this.read = function(query, onSuccess, onFailure) {
+        this._model.find(query, function(error, records) {
+            if (error) onFailure(error);
+            onSuccess(records);
         });
     }
+    
+    // delete an object record and save to db.
+    this.deleteById = function(id, onSuccess, onFailure) {
+        this._model.findByIdAndRemove(id, function (error, record) {
+            if (error) onFailure(error);
+            onSuccess(record);
+        });
+    }
+    
+    this.drop = function(onSuccess, onFailure) {
+        this._model.remove(function (error) {
+            if (error) onFailure(error);
+            onSuccess();
+        });
+    }
+}
+
+var ormManager = {
+    // return orm object
+    getORMObject: function(objectName) {
+        return new ORMObject(objectName);
+    }
+    
 }
 
 module.exports = ormManager;

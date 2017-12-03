@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var dateTimeHooks = require('./../hooks/dateTime.js');
 
-var userSchema = mongoose.Schema({
+var postSchema = mongoose.Schema({
     name: String,
     version: String,
     createdAt: Date,
@@ -9,6 +9,6 @@ var userSchema = mongoose.Schema({
 });
 
 // configure date time hook
-(new dateTimeHooks(userSchema)).configure();
+(new dateTimeHooks(postSchema)).configure();
 
-module.exports = userSchema;
+module.exports = postSchema;
