@@ -1,9 +1,14 @@
 var userSchema = require('./../models/user.js');
+var postSchema = require('./../models/post.js');
 
 var schemaManager = {
     
     getSchemaByName: function(objectName) {
-        if (objectName == 'user') return userSchema;
+        var schema = eval(objectName + 'Schema');
+        if (!schema) {
+            throw {errorMessage: 'Schema not found.'};
+        } 
+        return schema;
     }
     
 };

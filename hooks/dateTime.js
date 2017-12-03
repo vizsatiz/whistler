@@ -4,7 +4,9 @@ var dateTimeHooks = function (schema) {
     
     var preSaveHook = function(schemaToHook) {
         // on every save, add the date
-        schemaToHook.pre('save', function(next) {
+        schemaToHook.pre('save', true, function(next, done) {
+          // trigger next middleware in parellel
+          next();
           var currentDateTime = (new Date()).toISOString();
           if (!this.updatedAt)
             this.updatedAt = new Date(currentDateTime);
@@ -12,14 +14,15 @@ var dateTimeHooks = function (schema) {
           if (!this.createdAt)
             this.createdAt = new Date(currentDateTime);
 
-          next();
+          done();
         });
     }
 
     var preUpdateHook = function(schemaToHook) {
-        schemaToHook.pre('findOneAndUpdate', function (next) {
-            this._update.updatedAt = (new Date()).toISOString();
+        schemaToHook.pre('findOneAndUpdate', true, function (next, done) {
             next();
+            this._update.updatedAt = (new Date()).toISOString();
+            done();
         });   
     }
     
