@@ -24,8 +24,12 @@ var ORMObject = function(modelName) {
     }  
     
     // read an object record from db
-    this.read = function(query, onSuccess, onFailure) {
-        this._model.find(query, function(error, records) {
+    this.read = function(query, options, onSuccess, onFailure) {
+        var queryObject = this._model.find(query);
+        for (var i = 0; i < options.length; i++) {
+           queryObject = queryObject.populate(options[i].path);
+        }
+        queryObject.exec(function(error, records) {
             if (error) onFailure(error);
             onSuccess(records);
         });
@@ -39,11 +43,20 @@ var ORMObject = function(modelName) {
         });
     }
     
+    // delete all the records in a table
     this.drop = function(onSuccess, onFailure) {
         this._model.remove(function (error) {
             if (error) onFailure(error);
             onSuccess();
         });
+    }
+    
+    // save the current state of the object
+    this.save = function(record, onSuccess, onFailure) {
+        record.save(function(error, record){
+            if(error) onFailure(error);
+            onSuccess(record);
+        }) ;
     }
 }
 

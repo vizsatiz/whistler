@@ -5,6 +5,7 @@ var ormManager = require('./../db/ormManager.js');
 var dbManager = DBManager.getInstance().connect({isMock: false});
 var userORMObject = ormManager.getORMObject('user');
 var postORMObject = ormManager.getORMObject('post');
+var commentORMObject = ormManager.getORMObject('comment');
 
 describe('Mongoose db CRUD tests', function() {
   describe('[No relationship] Mongoose db object tests for CRUD validation', function() {
@@ -29,7 +30,7 @@ describe('Mongoose db CRUD tests', function() {
     it('Create user through models ..', function(done) {
       userORMObject.create({name: "testName"}, function (user) {
           assert.equal('testName', user.name);
-          userORMObject.deleteById(user._id, function (user) {
+          userORMObject.deleteById(user._id, function () {
               done();
           }, function(error) {
               done(error);
@@ -60,10 +61,10 @@ describe('Mongoose db CRUD tests', function() {
           assert.equal('testName11', user1.name);
           userORMObject.create({name: "testName21"}, function (user2) {
               assert.equal('testName21', user2.name);
-              userORMObject.read({name: "testName21"}, function (readusers1) {
+              userORMObject.read({name: "testName21"}, [], function (readusers1) {
                   assert.equal(1, readusers1.length);
                   assert.equal("testName21", readusers1[0].name);
-                  userORMObject.read({}, function (readusers2) {
+                  userORMObject.read({}, [], function (readusers2) {
                       assert.equal(2, readusers2.length);
                       assert.equal("testName11", readusers2[0].name);
                       assert.equal("testName21", readusers2[1].name);
@@ -111,19 +112,76 @@ describe('Mongoose db CRUD tests', function() {
   });
     
   describe('[1-Many] Mongoose db object tests for post to user relations', function() {
-     it('Create a user and a post from that user ..', function(done) {
+     it('Create a user and a post for that user and delete post ..', function(done) {
           userORMObject.create({name: "testName"}, function (user) {
-          assert.equal('testName', user.name);
-          postORMObject.create({message: "testMessage", user: user._id}, function (post) {
-             assert.equal("testMessage", post.message);
-             assert.equal(user._id, post.user);
-             done();
-          }, function(error) {
-             done(error); 
+              assert.equal('testName', user.name);
+              postORMObject.create({message: "testMessage", user: user._id}, function (post) {
+                 assert.equal("testMessage", post.message);
+                 assert.equal(user._id, post.user);
+                 postORMObject.deleteById(post._id, function () {
+                    done();
+                 }, function(error) {
+                    done(error);
+                 });
+              }, function(error) {
+                 done(error); 
+              });
+          }, function (error) {
+              done(error);
           });
-      }, function (error) {
-          done(error);
-      });
+     });
+      
+     it('Read one to many post records without populate and query by user ..', function(done) {
+         userORMObject.create({name: "testName"}, function (user) {
+              assert.equal('testName', user.name);
+              postORMObject.create({message: "testMessage", user: user._id}, function (post) {
+                 assert.equal("testMessage", post.message);
+                 assert.equal(user._id, post.user);
+                 postORMObject.read({"user": user._id}, [], function (postByUser) {
+                    assert.equal(1, postByUser.length);
+                    assert.equal("testMessage", postByUser[0].message);
+                     done();
+                 }, function(error) {
+                    done(error);
+                 });
+              }, function(error) {
+                 done(error); 
+              });
+          }, function (error) {
+              done(error);
+          });
+     });
+    it('Read one to many post records with populate comment and query by user ..', function(done) {
+         userORMObject.create({name: "testName"}, function (user) {
+              assert.equal('testName', user.name);
+              postORMObject.create({message: "testMessage", user: user._id}, function (post) {
+                 assert.equal("testMessage", post.message);
+                 assert.equal(user._id, post.user);
+                 commentORMObject.create({message: 'testComment', user: user._id}, function(comment) {
+                    assert.equal("testComment", comment.message);
+                    post.comments.push(comment);
+                    postORMObject.save(post, function() {
+                        postORMObject.read({"user": user._id}, [{path: 'comments'}], function (postByUser) {
+                           assert.equal(1, postByUser.length);
+                           assert.equal("testMessage", postByUser[0].message);
+                           assert.equal(1, postByUser[0].comments.length);
+                           assert.equal("testComment", postByUser[0].comments[0].message);
+                           done();
+                        }, function(error) {
+                            done(error);
+                        });   
+                    }, function(error) {
+                        done(error);
+                    });
+                 }, function(error) {
+                    done(error); 
+                 });
+              }, function(error) {
+                 done(error); 
+              });
+          }, function (error) {
+              done(error);
+          });
      });
   });
     

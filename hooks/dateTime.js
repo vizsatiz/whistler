@@ -8,12 +8,12 @@ var dateTimeHooks = function (schema) {
           // trigger next middleware in parellel
           next();
           var currentDateTime = (new Date()).toISOString();
-          if (!this.updatedAt)
-            this.updatedAt = new Date(currentDateTime);
+          // updates dt if a child is added 
+          this.updatedAt = new Date(currentDateTime);
 
           if (!this.createdAt)
             this.createdAt = new Date(currentDateTime);
-
+        
           done();
         });
     }

@@ -3,16 +3,15 @@ var dateTimeHooks = require('./../hooks/dateTime.js');
 
 var ObjectId = mongoose.Schema.ObjectId;
 
-var postSchema = mongoose.Schema({
+var commentSchema = mongoose.Schema({
     message: String,
     version: String,
     user: {type: ObjectId, ref: 'user'},
-    comments: [{type: ObjectId, ref: 'comment'}],
     createdAt: Date,
     updatedAt: Date
 });
 
 // configure date time hook
-(new dateTimeHooks(postSchema)).configure();
+(new dateTimeHooks(commentSchema)).configure();
 
-module.exports = postSchema;
+module.exports = commentSchema;

@@ -1,13 +1,15 @@
 var userSchema = require('./../models/user.js');
 var postSchema = require('./../models/post.js');
+var commentSchema = require('./../models/comment.js');
 
 var schemaManager = {
     
     getSchemaByName: function(objectName) {
-        var schema = eval(objectName + 'Schema');
-        if (!schema) {
-            throw {errorMessage: 'Schema not found.'};
-        } 
+        try {
+            var schema = eval(objectName + 'Schema');
+        } catch(e){
+            throw {message: 'Schema not found'};
+        }
         return schema;
     }
     
