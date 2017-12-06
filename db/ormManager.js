@@ -24,11 +24,9 @@ var ORMObject = function(modelName) {
     }  
     
     // read an object record from db
-    this.read = function(query, options, onSuccess, onFailure) {
+    this.read = function(query, populate, onSuccess, onFailure) {
         var queryObject = this._model.find(query);
-        for (var i = 0; i < options.length; i++) {
-           queryObject = queryObject.populate(options[i].path);
-        }
+        queryObject = queryObject.populate(populate);
         queryObject.exec(function(error, records) {
             if (error) onFailure(error);
             onSuccess(records);

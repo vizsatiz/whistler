@@ -151,6 +151,7 @@ describe('Mongoose db CRUD tests', function() {
               done(error);
           });
      });
+      
     it('Read one to many post records with populate comment and query by user ..', function(done) {
          userORMObject.create({name: "testName"}, function (user) {
               assert.equal('testName', user.name);
@@ -161,7 +162,7 @@ describe('Mongoose db CRUD tests', function() {
                     assert.equal("testComment", comment.message);
                     post.comments.push(comment);
                     postORMObject.save(post, function() {
-                        postORMObject.read({"user": user._id}, [{path: 'comments'}], function (postByUser) {
+                        postORMObject.read({"user": user._id}, {path: 'comments'}, function (postByUser) {
                            assert.equal(1, postByUser.length);
                            assert.equal("testMessage", postByUser[0].message);
                            assert.equal(1, postByUser[0].comments.length);
@@ -183,6 +184,41 @@ describe('Mongoose db CRUD tests', function() {
               done(error);
           });
      });
+      
+    it('Read one to many post records with populate comment with commented user ..', function(done) {
+         userORMObject.create({name: "testName"}, function (user) {
+              assert.equal('testName', user.name);
+              postORMObject.create({message: "testMessage", user: user._id}, function (post) {
+                 assert.equal("testMessage", post.message);
+                 assert.equal(user._id, post.user);
+                 commentORMObject.create({message: 'testComment', user: user._id}, function(comment) {
+                    assert.equal("testComment", comment.message);
+                    post.comments.push(comment);
+                    postORMObject.save(post, function() {
+                        postORMObject.read({"user": user._id}, {path: 'comments', 
+                                                                 populate: {path: 'user'}}, function(postByUser) {
+                           assert.equal(1, postByUser.length);
+                           assert.equal("testMessage", postByUser[0].message);
+                           assert.equal(1, postByUser[0].comments.length);
+                           assert.equal("testComment", postByUser[0].comments[0].message);
+                           assert.equal("testName", postByUser[0].comments[0].user.name);
+                           done();
+                        }, function(error) {
+                            done(error);
+                        });   
+                    }, function(error) {
+                        done(error);
+                    });
+                 }, function(error) {
+                    done(error); 
+                 });
+              }, function(error) {
+                 done(error); 
+              });
+          }, function (error) {
+              done(error);
+          });
+      });
   });
     
 });
