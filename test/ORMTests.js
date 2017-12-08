@@ -219,6 +219,10 @@ describe('Mongoose db CRUD tests', function() {
               done(error);
           });
       });
+      
+      it('Read one to many post records with populate on userTags and hasTags ..', function(done) {
+          done();
+      });
   });
     
 });

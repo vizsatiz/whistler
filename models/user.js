@@ -3,6 +3,7 @@ var dateTimeHooks = require('./../hooks/dateTime.js');
 
 var userSchema = mongoose.Schema({
     name: String,
+    password: String,
     version: String,
     createdAt: Date,
     updatedAt: Date

@@ -6,8 +6,10 @@ var ObjectId = mongoose.Schema.ObjectId;
 var postSchema = mongoose.Schema({
     message: String,
     version: String,
-    user: {type: ObjectId, ref: 'user'},
+    userTags: [{type: ObjectId, ref: 'user'}],
     comments: [{type: ObjectId, ref: 'comment'}],
+    hashTags: [{type: ObjectId, ref: 'hashTag'}],
+    user: {type: ObjectId, ref: 'user'},
     createdAt: Date,
     updatedAt: Date
 });
