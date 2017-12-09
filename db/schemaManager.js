@@ -1,6 +1,7 @@
 var userSchema = require('./../models/user.js');
 var postSchema = require('./../models/post.js');
 var commentSchema = require('./../models/comment.js');
+var hashTagSchema = require('./../models/hashTag.js');
 
 var schemaManager = {
     

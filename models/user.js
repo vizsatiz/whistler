@@ -12,4 +12,9 @@ var userSchema = mongoose.Schema({
 // configure date time hook
 (new dateTimeHooks(userSchema)).configure();
 
+userSchema.path('name').validate(function (email) {
+   var emailRegex = /^[a-zA-Z0-9_!]*$/; //^[a-zA-Z0-9_!]*$
+   return emailRegex.test(email.text); // Assuming email has a text attribute
+}, 'The e-mail field cannot be empty.')
+
 module.exports = userSchema;

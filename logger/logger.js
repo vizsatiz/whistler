@@ -18,4 +18,19 @@ var logger = winston.createLogger({
   exitOnError: false
 });
 
-module.exports = logger;
+var customLogger = {
+    // logger 
+    info: function(tag, message) {
+        logger.info("[" + tag + "]" + message);
+    }, 
+    
+    debug: function(tag, message) {
+        logger.debug("[" + tag + "]" + message);
+    }, 
+    
+    error: function(tag, message) {
+        logger.error("[" + tag + "]" + message);
+    }
+}
+
+module.exports = customLogger;

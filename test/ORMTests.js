@@ -6,6 +6,7 @@ var dbManager = DBManager.getInstance().connect({isMock: false});
 var userORMObject = ormManager.getORMObject('user');
 var postORMObject = ormManager.getORMObject('post');
 var commentORMObject = ormManager.getORMObject('comment');
+var hashTagORMObject = ormManager.getORMObject('hashTag');
 
 describe('Mongoose db CRUD tests', function() {
   describe('[No relationship] Mongoose db object tests for CRUD validation', function() {
@@ -221,7 +222,39 @@ describe('Mongoose db CRUD tests', function() {
       });
       
       it('Read one to many post records with populate on userTags and hasTags ..', function(done) {
-          done();
+          userORMObject.create({name: "userOne"}, function (userOne) {
+              userORMObject.create({name: "userTwo"}, function (userTwo) {
+                 hashTagORMObject.create({name: "#triumph"}, function (hashTag) {
+                     postORMObject.create({message: "testMessage", user: userOne._id}, function (post) {
+                        post.hashTags.push(hashTag);
+                        post.userTags.push(userTwo);
+                        postORMObject.save(post, function() {
+                            postORMObject.read({"user": userOne._id}, [{path: 'hashTags'},
+                                                                    {path: 'userTags'}], function(postByUser) {
+                               assert.equal(1, postByUser.length);
+                               assert.equal(1, postByUser[0].hashTags.length);
+                               assert.equal(1, postByUser[0].userTags.length);
+                               assert.equal("#triumph", postByUser[0].hashTags[0].name);
+                               assert.equal("userTwo", postByUser[0].userTags[0].name);
+                               done();
+                            }, function(error) {
+                                done(error)
+                            });
+                        }, function(error) {
+                            error(error);
+                        });
+                     }, function(error){
+                         done(error);
+                     });
+                 }, function(error){
+                     done(error);
+                 });
+              }, function(error) {
+                  done(error);
+              });
+          }, function(error) {
+              done(error);
+          });
       });
   });
     
