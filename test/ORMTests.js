@@ -113,6 +113,14 @@ describe('Mongoose db CRUD tests', function() {
   });
     
   describe('[1-Many] Mongoose db object tests for post to user relations', function() {
+      
+    beforeEach(function() {
+        hashTagORMObject.drop(function () {
+        }, function(error) {
+          done(error);
+        });
+    });
+      
      it('Create a user and a post for that user and delete post ..', function(done) {
           userORMObject.create({name: "testName"}, function (user) {
               assert.equal('testName', user.name);
@@ -161,7 +169,7 @@ describe('Mongoose db CRUD tests', function() {
                  assert.equal(user._id, post.user);
                  commentORMObject.create({message: 'testComment', user: user._id}, function(comment) {
                     assert.equal("testComment", comment.message);
-                    post.comments.push(comment);
+                    post.comments.push(comment._id);
                     postORMObject.save(post, function() {
                         postORMObject.read({"user": user._id}, {path: 'comments'}, function (postByUser) {
                            assert.equal(1, postByUser.length);
@@ -257,5 +265,65 @@ describe('Mongoose db CRUD tests', function() {
           });
       });
   });
+    
+describe('[Primary Keys] Mongoose db object tests for custom primary keys', function() {
+
+     beforeEach(function() {
+        hashTagORMObject.drop(function () {
+        }, function(error) {
+          done(error);
+        });
+     });
+
+     it('Create a hashTag and read that pk as hashTag name ..', function(done) {
+         hashTagORMObject.create({name: "#triumph"}, function (hashTag) {
+             assert.equal("#triumph", hashTag.name);
+             assert.equal("#triumph", hashTag._id);
+             done();
+         }, function(error) {
+             done(error);
+         });
+     });
+
+     it('Create a hashTag through findOneAndUpdate and read that pk as hashTag name ..', function(done) {
+         hashTagORMObject.update({_id: "#triumph"}, 
+                                 {name: "#triumph"}, {upsert: true, new:true}, function (hashTag) {
+             assert.equal("#triumph", hashTag.name);
+             assert.equal("#triumph", hashTag._id);
+             done();
+         }, function(error) {
+             done(error);
+         });
+     });
+
+});
+    
+describe('[Async] Mongoose db object tests for batch async inserts', function() {
+
+     beforeEach(function() {
+        hashTagORMObject.drop(function () {
+        }, function(error) {
+          done(error);
+        });
+     });
+
+     it('Create multiple hashTags with async and add them to post ..', function(done) {
+         hashTagORMObject.batchUpsert([{_id:'#triumph1', name:'#triumph1'}, {_id:'#triumph2', name:'#triumph2'}, {_id:'#triumph2', name:'#triumph2'}], function() {
+             hashTagORMObject.read({}, [], function(hashTags) {
+                 assert.equal(hashTags.length, 2);
+                 done();
+             }, function(error) {
+                 done(error);
+             });   
+         }, function(error) {
+             done(error);
+         });
+     });
+    
+    it('Check for multiple users with async ..', function(done) {
+        done();
+    });
+
+});
     
 });

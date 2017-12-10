@@ -13,7 +13,7 @@ var logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.File({ filename: './bin/logs/error.log', level: 'error', handleExceptions: true}),
-    new winston.transports.File({ filename: './bin/logs/info.log'})
+    new winston.transports.File({ filename: './bin/logs/info.log', maxsize: 100})
   ],
   exitOnError: false
 });
