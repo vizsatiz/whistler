@@ -10,14 +10,14 @@ var hashTagORMObject = ormManager.getORMObject('hashTag');
 
 describe('Mongoose db CRUD tests', function() {
   describe('[No relationship] Mongoose db object tests for CRUD validation', function() {
-      
+
     beforeEach(function() {
         userORMObject.drop(function () {
         }, function(error) {
           done(error);
         });
     });
-      
+
     it('Invalid model creation test ..', function(done) {
         try{
             ormManager.getORMObject('Invalid');
@@ -26,7 +26,7 @@ describe('Mongoose db CRUD tests', function() {
             done();
         }
     });
-    
+
     // create
     it('Create user through models ..', function(done) {
       userORMObject.create({name: "testName"}, function (user) {
@@ -40,7 +40,7 @@ describe('Mongoose db CRUD tests', function() {
           done(error);
       });
     });
-      
+
     // update
     it('Create and Update user through models ..', function(done) {
       userORMObject.create({name: "testName", value: "Ross"}, function (user) {
@@ -55,7 +55,7 @@ describe('Mongoose db CRUD tests', function() {
           done(error);
       });
     });
-      
+
     // read
     it('Create, Read and Delete user through models ..', function(done) {
       userORMObject.create({name: "testName11"}, function (user1) {
@@ -87,9 +87,9 @@ describe('Mongoose db CRUD tests', function() {
           done(error);
       });
     });
-      
+
   });
-    
+
   describe('[No relationship] Mongoose db object tests for pre, post hooks for CRUD', function() {
     it('Pre hook test for create (save) and update (findOneAndUpdate) ..', function(done) {
       userORMObject.create({name: "testName", version: "Ross"}, function (user) {
@@ -111,16 +111,16 @@ describe('Mongoose db CRUD tests', function() {
       });
     });
   });
-    
+
   describe('[1-Many] Mongoose db object tests for post to user relations', function() {
-      
+
     beforeEach(function() {
         hashTagORMObject.drop(function () {
         }, function(error) {
           done(error);
         });
     });
-      
+
      it('Create a user and a post for that user and delete post ..', function(done) {
           userORMObject.create({name: "testName"}, function (user) {
               assert.equal('testName', user.name);
@@ -133,13 +133,13 @@ describe('Mongoose db CRUD tests', function() {
                     done(error);
                  });
               }, function(error) {
-                 done(error); 
+                 done(error);
               });
           }, function (error) {
               done(error);
           });
      });
-      
+
      it('Read one to many post records without populate and query by user ..', function(done) {
          userORMObject.create({name: "testName"}, function (user) {
               assert.equal('testName', user.name);
@@ -154,13 +154,13 @@ describe('Mongoose db CRUD tests', function() {
                     done(error);
                  });
               }, function(error) {
-                 done(error); 
+                 done(error);
               });
           }, function (error) {
               done(error);
           });
      });
-      
+
     it('Read one to many post records with populate comment and query by user ..', function(done) {
          userORMObject.create({name: "testName"}, function (user) {
               assert.equal('testName', user.name);
@@ -179,21 +179,21 @@ describe('Mongoose db CRUD tests', function() {
                            done();
                         }, function(error) {
                             done(error);
-                        });   
+                        });
                     }, function(error) {
                         done(error);
                     });
                  }, function(error) {
-                    done(error); 
+                    done(error);
                  });
               }, function(error) {
-                 done(error); 
+                 done(error);
               });
           }, function (error) {
               done(error);
           });
      });
-      
+
     it('Read one to many post records with populate comment with commented user ..', function(done) {
          userORMObject.create({name: "testName"}, function (user) {
               assert.equal('testName', user.name);
@@ -204,7 +204,7 @@ describe('Mongoose db CRUD tests', function() {
                     assert.equal("testComment", comment.message);
                     post.comments.push(comment);
                     postORMObject.save(post, function() {
-                        postORMObject.read({"user": user._id}, {path: 'comments', 
+                        postORMObject.read({"user": user._id}, {path: 'comments',
                                                                  populate: {path: 'user'}}, function(postByUser) {
                            assert.equal(1, postByUser.length);
                            assert.equal("testMessage", postByUser[0].message);
@@ -214,21 +214,21 @@ describe('Mongoose db CRUD tests', function() {
                            done();
                         }, function(error) {
                             done(error);
-                        });   
+                        });
                     }, function(error) {
                         done(error);
                     });
                  }, function(error) {
-                    done(error); 
+                    done(error);
                  });
               }, function(error) {
-                 done(error); 
+                 done(error);
               });
           }, function (error) {
               done(error);
           });
       });
-      
+
       it('Read one to many post records with populate on userTags and hasTags ..', function(done) {
           userORMObject.create({name: "userOne"}, function (userOne) {
               userORMObject.create({name: "userTwo"}, function (userTwo) {
@@ -265,7 +265,7 @@ describe('Mongoose db CRUD tests', function() {
           });
       });
   });
-    
+
 describe('[Primary Keys] Mongoose db object tests for custom primary keys', function() {
 
      beforeEach(function() {
@@ -286,7 +286,7 @@ describe('[Primary Keys] Mongoose db object tests for custom primary keys', func
      });
 
      it('Create a hashTag through findOneAndUpdate and read that pk as hashTag name ..', function(done) {
-         hashTagORMObject.update({_id: "#triumph"}, 
+         hashTagORMObject.update({_id: "#triumph"},
                                  {name: "#triumph"}, {upsert: true, new:true}, function (hashTag) {
              assert.equal("#triumph", hashTag.name);
              assert.equal("#triumph", hashTag._id);
@@ -297,7 +297,7 @@ describe('[Primary Keys] Mongoose db object tests for custom primary keys', func
      });
 
 });
-    
+
 describe('[Async] Mongoose db object tests for batch async inserts', function() {
 
      beforeEach(function() {
@@ -314,21 +314,21 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
                  done();
              }, function(error) {
                  done(error);
-             });   
+             });
          }, function(error) {
              done(error);
          });
      });
-    
+
     it('Check for multiple users with async [positive test]..', function(done) {
         userORMObject.create({name: "testName11"}, function (user1) {
           assert.equal('testName11', user1.name);
           userORMObject.create({name: "testName21"}, function (user2) {
-              userORMObject.batchRecordExistanceCheck([{name: "testName11"}, {name: "testName11"}], function() {
+              userORMObject.batchRecordExistenceCheck([{name: "testName11"}, {name: "testName11"}], function() {
                  done();
               }, function(error){
-                 done(error); 
-              }); 
+                 done(error);
+              });
           }, function(error) {
               done(error);
           });
@@ -336,16 +336,16 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
             done(error);
         });
     });
-    
+
     it('Check for multiple users with async [negative test]..', function(done) {
         userORMObject.create({name: "testName11"}, function (user1) {
           assert.equal('testName11', user1.name);
           userORMObject.create({name: "testName21"}, function (user2) {
-              userORMObject.batchRecordExistanceCheck([{name: "testName11"}, {name: "InvalidUser"}], function() {
+              userORMObject.batchRecordExistenceCheck([{name: "testName11"}, {name: "InvalidUser"}], function() {
                  done('Unknown user found !!');
               }, function(error){
-                 done(); 
-              }); 
+                 done();
+              });
           }, function(error) {
               done(error);
           });
@@ -355,5 +355,5 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
     });
 
 });
-    
+
 });

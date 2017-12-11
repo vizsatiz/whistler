@@ -8,5 +8,5 @@ describe('Winston Logger tests', function() {
          logger.error('This log message is part of logger config tests for ERROR ..');
          done();
       });
- });   
+ });
 });

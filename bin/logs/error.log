@@ -25,3 +25,103 @@
 [2017-12-11T09:18:51.200Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
 [2017-12-11T09:18:51.361Z][Wistler][error]: [ORMObject]Record not found in db, query: {"name":"InvalidUser"}
 [2017-12-11T09:18:51.361Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existance check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"
+[2017-12-11T12:39:25.740Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-11T12:39:25.906Z][Wistler][error]: [ORMObject]Record not found in db, query: {"name":"InvalidUser"}
+[2017-12-11T12:39:25.907Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existence check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"
+[2017-12-11T13:13:44.551Z][Wistler][error]: uncaughtException: Invalid shorthand property initializer
+/Volumes/data/whistle/utils/dbUtils.js:6
+   stringToObjectId = function(id) {
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Invalid shorthand property initializer
+    at createScript (vm.js:74:10)
+    at Object.runInThisContext (vm.js:116:10)
+    at Module._compile (module.js:533:28)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/Volumes/data/whistle/db/ormManager.js:6:15)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/Volumes/data/whistle/test/ORMTests.js:3:18)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+    at /Volumes/data/whistle/node_modules/mocha/lib/mocha.js:231:27
+    at Array.forEach (native)
+    at Mocha.loadFiles (/Volumes/data/whistle/node_modules/mocha/lib/mocha.js:228:14)
+    at Mocha.run (/Volumes/data/whistle/node_modules/mocha/lib/mocha.js:514:10)
+    at Object.<anonymous> (/Volumes/data/whistle/node_modules/mocha/bin/_mocha:484:18)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Function.Module.runMain (module.js:605:10)
+    at startup (bootstrap_node.js:158:16)
+    at bootstrap_node.js:575:3
+[2017-12-11T13:14:04.012Z][Wistler][error]: uncaughtException: Invalid shorthand property initializer
+/Volumes/data/whistle/utils/dbUtils.js:6
+   stringToObjectId = function(id) {
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Invalid shorthand property initializer
+    at createScript (vm.js:74:10)
+    at Object.runInThisContext (vm.js:116:10)
+    at Module._compile (module.js:533:28)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/Volumes/data/whistle/db/ormManager.js:6:15)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/Volumes/data/whistle/test/ORMTests.js:3:18)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Module.require (module.js:513:17)
+    at require (internal/module.js:11:18)
+    at /Volumes/data/whistle/node_modules/mocha/lib/mocha.js:231:27
+    at Array.forEach (native)
+    at Mocha.loadFiles (/Volumes/data/whistle/node_modules/mocha/lib/mocha.js:228:14)
+    at Mocha.run (/Volumes/data/whistle/node_modules/mocha/lib/mocha.js:514:10)
+    at Object.<anonymous> (/Volumes/data/whistle/node_modules/mocha/bin/_mocha:484:18)
+    at Module._compile (module.js:569:30)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:503:32)
+    at tryModuleLoad (module.js:466:12)
+    at Function.Module._load (module.js:458:3)
+    at Function.Module.runMain (module.js:605:10)
+    at startup (bootstrap_node.js:158:16)
+    at bootstrap_node.js:575:3
+[2017-12-11T13:14:22.248Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-11T13:14:22.414Z][Wistler][error]: [ORMObject]Record not found in db, query: {"name":"InvalidUser"}
+[2017-12-11T13:14:22.414Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existence check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"
+[2017-12-11T13:26:28.337Z][Wistler][error]: [ORMObject]Record not found in db, query: {"name":"InvalidUser"}
+[2017-12-11T13:26:28.337Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existence check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"
+[2017-12-11T13:26:28.338Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-11T13:34:01.024Z][Wistler][error]: [ORMObject]Record not found in db, query: {"name":"InvalidUser"}
+[2017-12-11T13:34:01.024Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existence check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"
+[2017-12-11T13:34:01.025Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined

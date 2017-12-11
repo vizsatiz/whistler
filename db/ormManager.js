@@ -3,50 +3,51 @@ var mongoose = require('mongoose');
 
 var schemaManager = require('./schemaManager.js');
 var logger = require('./../logger/logger.js');
+var dbUtils = require('./../utils/dbUtils');
 
 var ORMObject = function(modelName) {
-    
+
     // init model
-    this._model = mongoose.model(modelName, 
+    this._model = mongoose.model(modelName,
                                  schemaManager.getSchemaByName(modelName));
     this.TAG = "ORMObject";
-    
+
     // create an object record and save to db.
     this.create = function(record, onSuccess, onFailure) {
         var scope = this;
-        logger.info(this.TAG, "Create operation execution started on ORM Object: " 
+        logger.info(this.TAG, "Create operation execution started on ORM Object: "
                     + modelName + " with data: " + JSON.stringify(record));
         (new this._model(record)).save(function (error, record) {
             if (error){
               logger.error(scope.TAG, "Error while ORM create: " + JSON.stringify(error));
-              onFailure(error); 
+              onFailure(error);
               return;
             }
             logger.info(scope.TAG, "Record created successfully: " + JSON.stringify(record));
             onSuccess(record);
         });
     }
-    
+
     // update an object record and save to db.
     this.update = function(query, record, options, onSuccess, onFailure) {
         var scope = this;
-        logger.info(this.TAG, "Update operation execution started on ORM Object: " 
+        logger.info(this.TAG, "Update operation execution started on ORM Object: "
                     + modelName + " with data: " + JSON.stringify(record));
         this._model.findOneAndUpdate(query, record, options, function (error, record) {
             if (error){
               logger.error(scope.TAG, "Error while ORM update: " + JSON.stringify(error));
-              onFailure(error);  
+              onFailure(error);
               return;
             }
             logger.info(scope.TAG, "Record updated successfully: " + JSON.stringify(record));
             onSuccess(record);
         });
-    }  
-    
+    }
+
     // read an object record from db
     this.read = function(query, populate, onSuccess, onFailure) {
         var scope = this;
-        logger.info(this.TAG, "Read operation execution started on ORM Object: " 
+        logger.info(this.TAG, "Read operation execution started on ORM Object: "
                     + modelName + " with data: " + JSON.stringify(query));
         var queryObject = this._model.find(query);
         queryObject = queryObject.populate(populate);
@@ -60,11 +61,11 @@ var ORMObject = function(modelName) {
             onSuccess(records);
         });
     }
-    
+
     // delete an object record and save to db.
     this.deleteById = function(id, onSuccess, onFailure) {
         var scope = this;
-        logger.info(this.TAG, "Delete operation execution started on ORM Object: " 
+        logger.info(this.TAG, "Delete operation execution started on ORM Object: "
                     + modelName + " with id: " + id);
         this._model.findByIdAndRemove(id, function (error, record) {
             if (error) {
@@ -76,7 +77,7 @@ var ORMObject = function(modelName) {
             onSuccess(record);
         });
     }
-    
+
     // delete all the records in a table
     this.drop = function(onSuccess, onFailure) {
         var scope = this;
@@ -91,7 +92,7 @@ var ORMObject = function(modelName) {
             onSuccess();
         });
     }
-    
+
     // save the current state of the object
     this.save = function(record, onSuccess, onFailure) {
         var scope = this;
@@ -107,7 +108,7 @@ var ORMObject = function(modelName) {
             onSuccess(record);
         }) ;
     }
-    
+
     // batch upsert records
     this.batchUpsert = function(records, onSuccess, onFailure) {
         var scope = this;
@@ -129,11 +130,14 @@ var ORMObject = function(modelName) {
             }
         });
     }
-    
+
     // batch check records for existance
-    this.batchRecordExistanceCheck = function(queries, onSuccess, onFailure) {
+    this.batchRecordExistenceCheck = function(queries, onSuccess, onFailure) {
         var scope = this;
         async.each(queries, function(query, callback) {
+            if(typeof query === 'string') {
+              query = {_id: dbUtils.stringToObjectId(query)};
+            }
             scope._model.findOne(query, function(err, doc){
                 if(err){
                     return callback(err);
@@ -142,15 +146,15 @@ var ORMObject = function(modelName) {
                     logger.error(scope.TAG, 'Record not found in db, query: ' + JSON.stringify(query));
                     return callback('Record not found in db, query: ' + JSON.stringify(query));
                 }
-                logger.info(scope.TAG, "Read the batch existance check record: " + JSON.stringify(doc));
+                logger.info(scope.TAG, "Read the batch existence check record: " + JSON.stringify(doc));
                 return callback();
             });
         }, function(err){
             if(err){
-                logger.error(scope.TAG, "Error while ORM bulk batch record existance check: " + JSON.stringify(err));
+                logger.error(scope.TAG, "Error while ORM bulk batch record existence check: " + JSON.stringify(err));
                 onFailure(err);
             } else {
-                logger.info(scope.TAG, "Bulk existance check success for model: " + modelName);
+                logger.info(scope.TAG, "Bulk existence check success for model: " + modelName);
                 onSuccess();
             }
         });
@@ -162,7 +166,7 @@ var ormManager = {
     getORMObject: function(objectName) {
         return new ORMObject(objectName);
     }
-    
+
 }
 
 module.exports = ormManager;
