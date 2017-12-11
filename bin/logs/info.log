@@ -1512,3 +1512,178 @@
 [2017-12-10T17:36:32.473Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: hashTag with data: {}
 [2017-12-10T17:36:32.474Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"#triumph1","name":"#triumph1","updatedAt":"2017-12-10T17:36:32.465Z","__v":0,"posts":[]},{"_id":"#triumph2","name":"#triumph2","updatedAt":"2017-12-10T17:36:32.469Z","__v":0,"posts":[]}]
 [2017-12-10T17:36:32.474Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.252Z][Wistler][info]: [This log message is part of logger config tests for INFO ..]undefined
+[2017-12-10T20:47:14.253Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-10T20:47:14.263Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-10T20:47:14.269Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-10T20:47:14.270Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-10T20:47:14.290Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.278Z","updatedAt":"2017-12-10T20:47:14.278Z","name":"testName","_id":"5a2d9d52ec975c8ea79d6a4e"}
+[2017-12-10T20:47:14.290Z][Wistler][info]: [ORMObject]Delete operation execution started on ORM Object: user with id: 5a2d9d52ec975c8ea79d6a4e
+[2017-12-10T20:47:14.298Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-10T20:47:14.299Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName","value":"Ross"}
+[2017-12-10T20:47:14.301Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.299Z","updatedAt":"2017-12-10T20:47:14.299Z","name":"testName","_id":"5a2d9d52ec975c8ea79d6a4f"}
+[2017-12-10T20:47:14.301Z][Wistler][info]: [ORMObject]Update operation execution started on ORM Object: user with data: {"name":"updateTestName"}
+[2017-12-10T20:47:14.307Z][Wistler][info]: [ORMObject]Record updated successfully: {"_id":"5a2d9d52ec975c8ea79d6a4f","createdAt":"2017-12-10T20:47:14.299Z","updatedAt":"2017-12-10T20:47:14.303Z","name":"updateTestName","__v":0}
+[2017-12-10T20:47:14.308Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-10T20:47:14.308Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName11"}
+[2017-12-10T20:47:14.309Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.308Z","updatedAt":"2017-12-10T20:47:14.308Z","name":"testName11","_id":"5a2d9d52ec975c8ea79d6a50"}
+[2017-12-10T20:47:14.309Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName21"}
+[2017-12-10T20:47:14.310Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.309Z","updatedAt":"2017-12-10T20:47:14.309Z","name":"testName21","_id":"5a2d9d52ec975c8ea79d6a51"}
+[2017-12-10T20:47:14.310Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: user with data: {"name":"testName21"}
+[2017-12-10T20:47:14.317Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2d9d52ec975c8ea79d6a51","createdAt":"2017-12-10T20:47:14.309Z","updatedAt":"2017-12-10T20:47:14.309Z","name":"testName21","__v":0}]
+[2017-12-10T20:47:14.318Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: user with data: {}
+[2017-12-10T20:47:14.319Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2d9d52ec975c8ea79d6a50","createdAt":"2017-12-10T20:47:14.308Z","updatedAt":"2017-12-10T20:47:14.308Z","name":"testName11","__v":0},{"_id":"5a2d9d52ec975c8ea79d6a51","createdAt":"2017-12-10T20:47:14.309Z","updatedAt":"2017-12-10T20:47:14.309Z","name":"testName21","__v":0}]
+[2017-12-10T20:47:14.320Z][Wistler][info]: [ORMObject]Delete operation execution started on ORM Object: user with id: 5a2d9d52ec975c8ea79d6a50
+[2017-12-10T20:47:14.320Z][Wistler][info]: [ORMObject]Record deleted successfully: {"_id":"5a2d9d52ec975c8ea79d6a50","createdAt":"2017-12-10T20:47:14.308Z","updatedAt":"2017-12-10T20:47:14.308Z","name":"testName11","__v":0}
+[2017-12-10T20:47:14.322Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName","version":"Ross"}
+[2017-12-10T20:47:14.323Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.322Z","updatedAt":"2017-12-10T20:47:14.322Z","name":"testName","version":"Ross","_id":"5a2d9d52ec975c8ea79d6a52"}
+[2017-12-10T20:47:14.323Z][Wistler][info]: [ORMObject]Update operation execution started on ORM Object: user with data: {"name":"updateTestName"}
+[2017-12-10T20:47:14.326Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.327Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-10T20:47:14.327Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.327Z","updatedAt":"2017-12-10T20:47:14.327Z","name":"testName","_id":"5a2d9d52ec975c8ea79d6a53"}
+[2017-12-10T20:47:14.328Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2d9d52ec975c8ea79d6a53"}
+[2017-12-10T20:47:14.330Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.329Z","updatedAt":"2017-12-10T20:47:14.329Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a53","_id":"5a2d9d52ec975c8ea79d6a54","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-10T20:47:14.330Z][Wistler][info]: [ORMObject]Delete operation execution started on ORM Object: post with id: 5a2d9d52ec975c8ea79d6a54
+[2017-12-10T20:47:14.332Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.333Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-10T20:47:14.335Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.334Z","updatedAt":"2017-12-10T20:47:14.334Z","name":"testName","_id":"5a2d9d52ec975c8ea79d6a55"}
+[2017-12-10T20:47:14.335Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2d9d52ec975c8ea79d6a55"}
+[2017-12-10T20:47:14.337Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.336Z","updatedAt":"2017-12-10T20:47:14.336Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a55","_id":"5a2d9d52ec975c8ea79d6a56","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-10T20:47:14.337Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2d9d52ec975c8ea79d6a55"}
+[2017-12-10T20:47:14.339Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2d9d52ec975c8ea79d6a56","createdAt":"2017-12-10T20:47:14.336Z","updatedAt":"2017-12-10T20:47:14.336Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a55","__v":0,"hashTags":[],"comments":[],"userTags":[]}]
+[2017-12-10T20:47:14.339Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.340Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-10T20:47:14.342Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2d9d52ec975c8ea79d6a57"}
+[2017-12-10T20:47:14.343Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.342Z","updatedAt":"2017-12-10T20:47:14.342Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a57","_id":"5a2d9d52ec975c8ea79d6a58","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-10T20:47:14.343Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: comment with data: {"message":"testComment","user":"5a2d9d52ec975c8ea79d6a57"}
+[2017-12-10T20:47:14.344Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.344Z","updatedAt":"2017-12-10T20:47:14.344Z","message":"testComment","user":"5a2d9d52ec975c8ea79d6a57","_id":"5a2d9d52ec975c8ea79d6a59"}
+[2017-12-10T20:47:14.345Z][Wistler][info]: [ORMObject]Save operation execution started on ORM Object: post
+[2017-12-10T20:47:14.349Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2d9d52ec975c8ea79d6a57"}
+[2017-12-10T20:47:14.357Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2d9d52ec975c8ea79d6a58","createdAt":"2017-12-10T20:47:14.342Z","updatedAt":"2017-12-10T20:47:14.346Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a57","__v":1,"hashTags":[],"comments":[{"_id":"5a2d9d52ec975c8ea79d6a59","createdAt":"2017-12-10T20:47:14.344Z","updatedAt":"2017-12-10T20:47:14.344Z","message":"testComment","user":"5a2d9d52ec975c8ea79d6a57","__v":0}],"userTags":[]}]
+[2017-12-10T20:47:14.358Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-10T20:47:14.359Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.358Z","updatedAt":"2017-12-10T20:47:14.358Z","name":"testName","_id":"5a2d9d52ec975c8ea79d6a5a"}
+[2017-12-10T20:47:14.359Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2d9d52ec975c8ea79d6a5a"}
+[2017-12-10T20:47:14.362Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: comment with data: {"message":"testComment","user":"5a2d9d52ec975c8ea79d6a5a"}
+[2017-12-10T20:47:14.363Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.362Z","updatedAt":"2017-12-10T20:47:14.362Z","message":"testComment","user":"5a2d9d52ec975c8ea79d6a5a","_id":"5a2d9d52ec975c8ea79d6a5c"}
+[2017-12-10T20:47:14.364Z][Wistler][info]: [ORMObject]Save operation execution started on ORM Object: post
+[2017-12-10T20:47:14.366Z][Wistler][info]: [ORMObject]Record saved successfully: {"__v":1,"createdAt":"2017-12-10T20:47:14.360Z","updatedAt":"2017-12-10T20:47:14.364Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a5a","_id":"5a2d9d52ec975c8ea79d6a5b","hashTags":[],"comments":[{"_id":"5a2d9d52ec975c8ea79d6a5c","user":"5a2d9d52ec975c8ea79d6a5a","message":"testComment","updatedAt":"2017-12-10T20:47:14.362Z","createdAt":"2017-12-10T20:47:14.362Z","__v":0}],"userTags":[]}
+[2017-12-10T20:47:14.366Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2d9d52ec975c8ea79d6a5a"}
+[2017-12-10T20:47:14.375Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2d9d52ec975c8ea79d6a5b","createdAt":"2017-12-10T20:47:14.360Z","updatedAt":"2017-12-10T20:47:14.364Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a5a","__v":1,"hashTags":[],"comments":[{"_id":"5a2d9d52ec975c8ea79d6a5c","createdAt":"2017-12-10T20:47:14.362Z","updatedAt":"2017-12-10T20:47:14.362Z","message":"testComment","user":{"_id":"5a2d9d52ec975c8ea79d6a5a","createdAt":"2017-12-10T20:47:14.358Z","updatedAt":"2017-12-10T20:47:14.358Z","name":"testName","__v":0},"__v":0}],"userTags":[]}]
+[2017-12-10T20:47:14.376Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"userOne"}
+[2017-12-10T20:47:14.377Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.377Z","updatedAt":"2017-12-10T20:47:14.377Z","name":"userOne","_id":"5a2d9d52ec975c8ea79d6a5d"}
+[2017-12-10T20:47:14.378Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"userTwo"}
+[2017-12-10T20:47:14.378Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.378Z","updatedAt":"2017-12-10T20:47:14.378Z","name":"userTwo","_id":"5a2d9d52ec975c8ea79d6a5e"}
+[2017-12-10T20:47:14.379Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: hashTag with data: {"name":"#triumph"}
+[2017-12-10T20:47:14.380Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.379Z","updatedAt":"2017-12-10T20:47:14.379Z","_id":"#triumph","name":"#triumph","posts":[]}
+[2017-12-10T20:47:14.380Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2d9d52ec975c8ea79d6a5d"}
+[2017-12-10T20:47:14.381Z][Wistler][info]: [ORMObject]Save operation execution started on ORM Object: post
+[2017-12-10T20:47:14.383Z][Wistler][info]: [ORMObject]Record saved successfully: {"__v":1,"createdAt":"2017-12-10T20:47:14.380Z","updatedAt":"2017-12-10T20:47:14.382Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a5d","_id":"5a2d9d52ec975c8ea79d6a5f","hashTags":[{"name":"#triumph","_id":"#triumph","updatedAt":"2017-12-10T20:47:14.379Z","createdAt":"2017-12-10T20:47:14.379Z","__v":0,"posts":[]}],"comments":[],"userTags":[{"_id":"5a2d9d52ec975c8ea79d6a5e","name":"userTwo","updatedAt":"2017-12-10T20:47:14.378Z","createdAt":"2017-12-10T20:47:14.378Z","__v":0}]}
+[2017-12-10T20:47:14.383Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2d9d52ec975c8ea79d6a5d"}
+[2017-12-10T20:47:14.390Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2d9d52ec975c8ea79d6a5f","createdAt":"2017-12-10T20:47:14.380Z","updatedAt":"2017-12-10T20:47:14.382Z","message":"testMessage","user":"5a2d9d52ec975c8ea79d6a5d","__v":1,"hashTags":[{"_id":"#triumph","createdAt":"2017-12-10T20:47:14.379Z","updatedAt":"2017-12-10T20:47:14.379Z","name":"#triumph","__v":0,"posts":[]}],"comments":[],"userTags":[{"_id":"5a2d9d52ec975c8ea79d6a5e","createdAt":"2017-12-10T20:47:14.378Z","updatedAt":"2017-12-10T20:47:14.378Z","name":"userTwo","__v":0}]}]
+[2017-12-10T20:47:14.391Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.391Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: hashTag with data: {"name":"#triumph"}
+[2017-12-10T20:47:14.392Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-10T20:47:14.391Z","updatedAt":"2017-12-10T20:47:14.391Z","_id":"#triumph","name":"#triumph","posts":[]}
+[2017-12-10T20:47:14.392Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.393Z][Wistler][info]: [ORMObject]Update operation execution started on ORM Object: hashTag with data: {"name":"#triumph"}
+[2017-12-10T20:47:14.396Z][Wistler][info]: [ORMObject]Record updated successfully: {"_id":"#triumph","updatedAt":"2017-12-10T20:47:14.393Z","name":"#triumph","__v":0,"posts":[]}
+[2017-12-10T20:47:14.396Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-10T20:47:14.402Z][Wistler][info]: [ORMObject]Updating the batch upsert record: {"_id":"#triumph2","name":"#triumph2","updatedAt":"2017-12-10T20:47:14.399Z","__v":0,"posts":[]}
+[2017-12-10T20:47:14.403Z][Wistler][info]: [ORMObject]Bulk upsert success for model: hashTag
+[2017-12-10T20:47:14.403Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: hashTag with data: {}
+[2017-12-10T20:47:14.404Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"#triumph1","name":"#triumph1","updatedAt":"2017-12-10T20:47:14.397Z","__v":0,"posts":[]},{"_id":"#triumph2","name":"#triumph2","updatedAt":"2017-12-10T20:47:14.400Z","__v":0,"posts":[]}]
+[2017-12-10T20:47:14.404Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.199Z][Wistler][info]: [This log message is part of logger config tests for INFO ..]undefined
+[2017-12-11T09:18:51.200Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-11T09:18:51.208Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-11T09:18:51.214Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-11T09:18:51.214Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-11T09:18:51.234Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.222Z","updatedAt":"2017-12-11T09:18:51.222Z","name":"testName","_id":"5a2e4d7b842fce98c9a0dd6e"}
+[2017-12-11T09:18:51.234Z][Wistler][info]: [ORMObject]Delete operation execution started on ORM Object: user with id: 5a2e4d7b842fce98c9a0dd6e
+[2017-12-11T09:18:51.244Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: user
+[2017-12-11T09:18:51.244Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName","value":"Ross"}
+[2017-12-11T09:18:51.246Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.245Z","updatedAt":"2017-12-11T09:18:51.245Z","name":"testName","_id":"5a2e4d7b842fce98c9a0dd6f"}
+[2017-12-11T09:18:51.246Z][Wistler][info]: [ORMObject]Update operation execution started on ORM Object: user with data: {"name":"updateTestName"}
+[2017-12-11T09:18:51.252Z][Wistler][info]: [ORMObject]Record updated successfully: {"_id":"5a2e4d7b842fce98c9a0dd6f","createdAt":"2017-12-11T09:18:51.245Z","updatedAt":"2017-12-11T09:18:51.247Z","name":"updateTestName","__v":0}
+[2017-12-11T09:18:51.253Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName11"}
+[2017-12-11T09:18:51.254Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.254Z","updatedAt":"2017-12-11T09:18:51.254Z","name":"testName11","_id":"5a2e4d7b842fce98c9a0dd70"}
+[2017-12-11T09:18:51.255Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName21"}
+[2017-12-11T09:18:51.255Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.255Z","updatedAt":"2017-12-11T09:18:51.255Z","name":"testName21","_id":"5a2e4d7b842fce98c9a0dd71"}
+[2017-12-11T09:18:51.256Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: user with data: {"name":"testName21"}
+[2017-12-11T09:18:51.262Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2e4d7b842fce98c9a0dd71","createdAt":"2017-12-11T09:18:51.255Z","updatedAt":"2017-12-11T09:18:51.255Z","name":"testName21","__v":0}]
+[2017-12-11T09:18:51.263Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: user with data: {}
+[2017-12-11T09:18:51.266Z][Wistler][info]: [ORMObject]Record deleted successfully: {"_id":"5a2e4d7b842fce98c9a0dd70","createdAt":"2017-12-11T09:18:51.254Z","updatedAt":"2017-12-11T09:18:51.254Z","name":"testName11","__v":0}
+[2017-12-11T09:18:51.267Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName","version":"Ross"}
+[2017-12-11T09:18:51.268Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.267Z","updatedAt":"2017-12-11T09:18:51.267Z","name":"testName","version":"Ross","_id":"5a2e4d7b842fce98c9a0dd72"}
+[2017-12-11T09:18:51.268Z][Wistler][info]: [ORMObject]Update operation execution started on ORM Object: user with data: {"name":"updateTestName"}
+[2017-12-11T09:18:51.270Z][Wistler][info]: [ORMObject]Record updated successfully: {"_id":"5a2e4d7b842fce98c9a0dd72","createdAt":"2017-12-11T09:18:51.267Z","updatedAt":"2017-12-11T09:18:51.268Z","name":"updateTestName","version":"Ross","__v":0}
+[2017-12-11T09:18:51.271Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.271Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-11T09:18:51.272Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.272Z","updatedAt":"2017-12-11T09:18:51.272Z","name":"testName","_id":"5a2e4d7b842fce98c9a0dd73"}
+[2017-12-11T09:18:51.273Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2e4d7b842fce98c9a0dd73"}
+[2017-12-11T09:18:51.276Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.275Z","updatedAt":"2017-12-11T09:18:51.275Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd73","_id":"5a2e4d7b842fce98c9a0dd74","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-11T09:18:51.276Z][Wistler][info]: [ORMObject]Delete operation execution started on ORM Object: post with id: 5a2e4d7b842fce98c9a0dd74
+[2017-12-11T09:18:51.278Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.278Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-11T09:18:51.279Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.278Z","updatedAt":"2017-12-11T09:18:51.278Z","name":"testName","_id":"5a2e4d7b842fce98c9a0dd75"}
+[2017-12-11T09:18:51.279Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2e4d7b842fce98c9a0dd75"}
+[2017-12-11T09:18:51.280Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.279Z","updatedAt":"2017-12-11T09:18:51.279Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd75","_id":"5a2e4d7b842fce98c9a0dd76","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-11T09:18:51.281Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2e4d7b842fce98c9a0dd75"}
+[2017-12-11T09:18:51.282Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2e4d7b842fce98c9a0dd76","createdAt":"2017-12-11T09:18:51.279Z","updatedAt":"2017-12-11T09:18:51.279Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd75","__v":0,"hashTags":[],"comments":[],"userTags":[]}]
+[2017-12-11T09:18:51.283Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.284Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-11T09:18:51.285Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.284Z","updatedAt":"2017-12-11T09:18:51.284Z","name":"testName","_id":"5a2e4d7b842fce98c9a0dd77"}
+[2017-12-11T09:18:51.285Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2e4d7b842fce98c9a0dd77"}
+[2017-12-11T09:18:51.287Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.285Z","updatedAt":"2017-12-11T09:18:51.285Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd77","_id":"5a2e4d7b842fce98c9a0dd78","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-11T09:18:51.287Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: comment with data: {"message":"testComment","user":"5a2e4d7b842fce98c9a0dd77"}
+[2017-12-11T09:18:51.290Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.288Z","updatedAt":"2017-12-11T09:18:51.288Z","message":"testComment","user":"5a2e4d7b842fce98c9a0dd77","_id":"5a2e4d7b842fce98c9a0dd79"}
+[2017-12-11T09:18:51.292Z][Wistler][info]: [ORMObject]Save operation execution started on ORM Object: post
+[2017-12-11T09:18:51.296Z][Wistler][info]: [ORMObject]Record saved successfully: {"__v":1,"createdAt":"2017-12-11T09:18:51.285Z","updatedAt":"2017-12-11T09:18:51.292Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd77","_id":"5a2e4d7b842fce98c9a0dd78","hashTags":[],"comments":["5a2e4d7b842fce98c9a0dd79"],"userTags":[]}
+[2017-12-11T09:18:51.296Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2e4d7b842fce98c9a0dd77"}
+[2017-12-11T09:18:51.302Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2e4d7b842fce98c9a0dd78","createdAt":"2017-12-11T09:18:51.285Z","updatedAt":"2017-12-11T09:18:51.292Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd77","__v":1,"hashTags":[],"comments":[{"_id":"5a2e4d7b842fce98c9a0dd79","createdAt":"2017-12-11T09:18:51.288Z","updatedAt":"2017-12-11T09:18:51.288Z","message":"testComment","user":"5a2e4d7b842fce98c9a0dd77","__v":0}],"userTags":[]}]
+[2017-12-11T09:18:51.303Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.303Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName"}
+[2017-12-11T09:18:51.304Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.304Z","updatedAt":"2017-12-11T09:18:51.304Z","name":"testName","_id":"5a2e4d7b842fce98c9a0dd7a"}
+[2017-12-11T09:18:51.304Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: post with data: {"message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7a"}
+[2017-12-11T09:18:51.306Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.305Z","updatedAt":"2017-12-11T09:18:51.305Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7a","_id":"5a2e4d7b842fce98c9a0dd7b","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-11T09:18:51.306Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: comment with data: {"message":"testComment","user":"5a2e4d7b842fce98c9a0dd7a"}
+[2017-12-11T09:18:51.312Z][Wistler][info]: [ORMObject]Save operation execution started on ORM Object: post
+[2017-12-11T09:18:51.313Z][Wistler][info]: [ORMObject]Record saved successfully: {"__v":1,"createdAt":"2017-12-11T09:18:51.305Z","updatedAt":"2017-12-11T09:18:51.312Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7a","_id":"5a2e4d7b842fce98c9a0dd7b","hashTags":[],"comments":[{"_id":"5a2e4d7b842fce98c9a0dd7c","user":"5a2e4d7b842fce98c9a0dd7a","message":"testComment","updatedAt":"2017-12-11T09:18:51.307Z","createdAt":"2017-12-11T09:18:51.307Z","__v":0}],"userTags":[]}
+[2017-12-11T09:18:51.314Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2e4d7b842fce98c9a0dd7a"}
+[2017-12-11T09:18:51.318Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2e4d7b842fce98c9a0dd7b","createdAt":"2017-12-11T09:18:51.305Z","updatedAt":"2017-12-11T09:18:51.312Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7a","__v":1,"hashTags":[],"comments":[{"_id":"5a2e4d7b842fce98c9a0dd7c","createdAt":"2017-12-11T09:18:51.307Z","updatedAt":"2017-12-11T09:18:51.307Z","message":"testComment","user":{"_id":"5a2e4d7b842fce98c9a0dd7a","createdAt":"2017-12-11T09:18:51.304Z","updatedAt":"2017-12-11T09:18:51.304Z","name":"testName","__v":0},"__v":0}],"userTags":[]}]
+[2017-12-11T09:18:51.319Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.319Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"userOne"}
+[2017-12-11T09:18:51.321Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.320Z","updatedAt":"2017-12-11T09:18:51.320Z","name":"userOne","_id":"5a2e4d7b842fce98c9a0dd7d"}
+[2017-12-11T09:18:51.321Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"userTwo"}
+[2017-12-11T09:18:51.323Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.322Z","updatedAt":"2017-12-11T09:18:51.322Z","name":"userTwo","_id":"5a2e4d7b842fce98c9a0dd7e"}
+[2017-12-11T09:18:51.323Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: hashTag with data: {"name":"#triumph"}
+[2017-12-11T09:18:51.327Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.326Z","updatedAt":"2017-12-11T09:18:51.326Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7d","_id":"5a2e4d7b842fce98c9a0dd7f","hashTags":[],"comments":[],"userTags":[]}
+[2017-12-11T09:18:51.328Z][Wistler][info]: [ORMObject]Save operation execution started on ORM Object: post
+[2017-12-11T09:18:51.330Z][Wistler][info]: [ORMObject]Record saved successfully: {"__v":1,"createdAt":"2017-12-11T09:18:51.326Z","updatedAt":"2017-12-11T09:18:51.328Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7d","_id":"5a2e4d7b842fce98c9a0dd7f","hashTags":[{"name":"#triumph","_id":"#triumph","updatedAt":"2017-12-11T09:18:51.324Z","createdAt":"2017-12-11T09:18:51.324Z","__v":0,"posts":[]}],"comments":[],"userTags":[{"_id":"5a2e4d7b842fce98c9a0dd7e","name":"userTwo","updatedAt":"2017-12-11T09:18:51.322Z","createdAt":"2017-12-11T09:18:51.322Z","__v":0}]}
+[2017-12-11T09:18:51.330Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: post with data: {"user":"5a2e4d7b842fce98c9a0dd7d"}
+[2017-12-11T09:18:51.333Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"5a2e4d7b842fce98c9a0dd7f","createdAt":"2017-12-11T09:18:51.326Z","updatedAt":"2017-12-11T09:18:51.328Z","message":"testMessage","user":"5a2e4d7b842fce98c9a0dd7d","__v":1,"hashTags":[{"_id":"#triumph","createdAt":"2017-12-11T09:18:51.324Z","updatedAt":"2017-12-11T09:18:51.324Z","name":"#triumph","__v":0,"posts":[]}],"comments":[],"userTags":[{"_id":"5a2e4d7b842fce98c9a0dd7e","createdAt":"2017-12-11T09:18:51.322Z","updatedAt":"2017-12-11T09:18:51.322Z","name":"userTwo","__v":0}]}]
+[2017-12-11T09:18:51.333Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.334Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: hashTag with data: {"name":"#triumph"}
+[2017-12-11T09:18:51.335Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.334Z","updatedAt":"2017-12-11T09:18:51.334Z","_id":"#triumph","name":"#triumph","posts":[]}
+[2017-12-11T09:18:51.336Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.336Z][Wistler][info]: [ORMObject]Update operation execution started on ORM Object: hashTag with data: {"name":"#triumph"}
+[2017-12-11T09:18:51.340Z][Wistler][info]: [ORMObject]Record updated successfully: {"_id":"#triumph","updatedAt":"2017-12-11T09:18:51.336Z","name":"#triumph","__v":0,"posts":[]}
+[2017-12-11T09:18:51.341Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.347Z][Wistler][info]: [ORMObject]Updating the batch upsert record: null
+[2017-12-11T09:18:51.347Z][Wistler][info]: [ORMObject]Updating the batch upsert record: null
+[2017-12-11T09:18:51.347Z][Wistler][info]: [ORMObject]Updating the batch upsert record: {"_id":"#triumph2","name":"#triumph2","updatedAt":"2017-12-11T09:18:51.343Z","__v":0,"posts":[]}
+[2017-12-11T09:18:51.347Z][Wistler][info]: [ORMObject]Bulk upsert success for model: hashTag
+[2017-12-11T09:18:51.347Z][Wistler][info]: [ORMObject]Read operation execution started on ORM Object: hashTag with data: {}
+[2017-12-11T09:18:51.348Z][Wistler][info]: [ORMObject]Record read successfully: [{"_id":"#triumph1","name":"#triumph1","updatedAt":"2017-12-11T09:18:51.341Z","__v":0,"posts":[]},{"_id":"#triumph2","name":"#triumph2","updatedAt":"2017-12-11T09:18:51.345Z","__v":0,"posts":[]}]
+[2017-12-11T09:18:51.348Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.349Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName11"}
+[2017-12-11T09:18:51.349Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.349Z","updatedAt":"2017-12-11T09:18:51.349Z","name":"testName11","_id":"5a2e4d7b842fce98c9a0dd80"}
+[2017-12-11T09:18:51.350Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName21"}
+[2017-12-11T09:18:51.354Z][Wistler][info]: [ORMObject]Read the batch existance check record: {"_id":"5a2e4d7b842fce98c9a0dd80","createdAt":"2017-12-11T09:18:51.349Z","updatedAt":"2017-12-11T09:18:51.349Z","name":"testName11","__v":0}
+[2017-12-11T09:18:51.354Z][Wistler][info]: [ORMObject]Bulk existance check success for model: user
+[2017-12-11T09:18:51.355Z][Wistler][info]: [ORMObject]Drop operation execution started on ORM Object: hashTag
+[2017-12-11T09:18:51.355Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName11"}
+[2017-12-11T09:18:51.356Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.355Z","updatedAt":"2017-12-11T09:18:51.355Z","name":"testName11","_id":"5a2e4d7b842fce98c9a0dd82"}
+[2017-12-11T09:18:51.356Z][Wistler][info]: [ORMObject]Create operation execution started on ORM Object: user with data: {"name":"testName21"}
+[2017-12-11T09:18:51.357Z][Wistler][info]: [ORMObject]Record created successfully: {"__v":0,"createdAt":"2017-12-11T09:18:51.356Z","updatedAt":"2017-12-11T09:18:51.356Z","name":"testName21","_id":"5a2e4d7b842fce98c9a0dd83"}
+[2017-12-11T09:18:51.361Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existance check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"
+[2017-12-11T09:18:51.361Z][Wistler][info]: [ORMObject]Read the batch existance check record: {"_id":"5a2e4d7b842fce98c9a0dd80","createdAt":"2017-12-11T09:18:51.349Z","updatedAt":"2017-12-11T09:18:51.349Z","name":"testName11","__v":0}

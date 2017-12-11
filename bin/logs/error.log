@@ -21,3 +21,7 @@
 [2017-12-10T10:44:13.920Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
 [2017-12-10T10:44:30.173Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
 [2017-12-10T17:36:32.324Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-10T20:47:14.253Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-11T09:18:51.200Z][Wistler][error]: [This log message is part of logger config tests for ERROR ..]undefined
+[2017-12-11T09:18:51.361Z][Wistler][error]: [ORMObject]Record not found in db, query: {"name":"InvalidUser"}
+[2017-12-11T09:18:51.361Z][Wistler][error]: [ORMObject]Error while ORM bulk batch record existance check: "Record not found in db, query: {\"name\":\"InvalidUser\"}"

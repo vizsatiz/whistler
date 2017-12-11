@@ -320,8 +320,38 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
          });
      });
     
-    it('Check for multiple users with async ..', function(done) {
-        done();
+    it('Check for multiple users with async [positive test]..', function(done) {
+        userORMObject.create({name: "testName11"}, function (user1) {
+          assert.equal('testName11', user1.name);
+          userORMObject.create({name: "testName21"}, function (user2) {
+              userORMObject.batchRecordExistanceCheck([{name: "testName11"}, {name: "testName11"}], function() {
+                 done();
+              }, function(error){
+                 done(error); 
+              }); 
+          }, function(error) {
+              done(error);
+          });
+        }, function(error) {
+            done(error);
+        });
+    });
+    
+    it('Check for multiple users with async [negative test]..', function(done) {
+        userORMObject.create({name: "testName11"}, function (user1) {
+          assert.equal('testName11', user1.name);
+          userORMObject.create({name: "testName21"}, function (user2) {
+              userORMObject.batchRecordExistanceCheck([{name: "testName11"}, {name: "InvalidUser"}], function() {
+                 done('Unknown user found !!');
+              }, function(error){
+                 done(); 
+              }); 
+          }, function(error) {
+              done(error);
+          });
+        }, function(error) {
+            done(error);
+        });
     });
 
 });
