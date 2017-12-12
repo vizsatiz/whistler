@@ -325,7 +325,7 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
         userORMObject.create({name: "testName11"}, function (user1) {
           assert.equal('testName11', user1.name);
           userORMObject.create({name: "testName21"}, function (user2) {
-              userORMObject.batchRecordExistenceCheck([{name: "testName11"}, {name: "testName11"}], function() {
+              userORMObject.batchRecordExistenceCheck([{query:{name: "testName11"}}, {query:{name: "testName11"}}], function() {
                  done();
               }, function(error){
                  done(error);
@@ -342,7 +342,7 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
         userORMObject.create({name: "testName11"}, function (user1) {
           assert.equal('testName11', user1.name);
           userORMObject.create({name: "testName21"}, function (user2) {
-              userORMObject.batchRecordExistenceCheck([{name: "testName11"}, {name: "InvalidUser"}], function() {
+              userORMObject.batchRecordExistenceCheck([{query:{name: "testName11"}}, {query:{name: "InvalidUser"}}], function() {
                  done('Unknown user found !!');
               }, function(error){
                  done();

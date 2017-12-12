@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 
 var schemaManager = require('./schemaManager.js');
 var logger = require('./../logger/logger.js');
-var dbUtils = require('./../utils/dbUtils');
 
 var ORMObject = function(modelName) {
 
@@ -148,10 +147,7 @@ var ORMObject = function(modelName) {
     this.batchRecordExistenceCheck = function(queries, onSuccess, onFailure) {
         var scope = this;
         async.each(queries, function(query, callback) {
-            if(typeof query === 'string') {
-              query = {_id: dbUtils.stringToObjectId(query)};
-            }
-            scope._model.findOne(query, function(err, doc){
+            scope._model.findOne(query.query, function(err, doc){
                 if(err){
                     return callback(err);
                 }
@@ -160,7 +156,20 @@ var ORMObject = function(modelName) {
                     return callback('Record not found in db, query: ' + JSON.stringify(query));
                 }
                 logger.info(scope.TAG, "Read the batch existence check record: " + JSON.stringify(doc));
-                return callback();
+                var fks = query.fks;
+                if (fks && fks.length > 0) {
+                  for (var i = 0; i < fks.length; i++) {
+                    (doc[fks[i].fieldName]).push(fks[i].value);
+                  }
+                  scope.save(doc, function(rec) {
+                     return callback();
+                  }, function(error) {
+                     logger.error(scope.TAG, "Error while ORM bulk upsert while saving with pk: " + JSON.stringify(err));
+                     return callback(error);
+                  });
+                } else {
+                  return callback();
+                }
             });
         }, function(err){
             if(err){

@@ -48,7 +48,10 @@ var FeedService = function(user) {
                       if (!userTags[i]._id) {
                         logger.error('User tag found without id: ' + JSON.stringify(userTags[i]));
                       }
-                      userTagsToCommit.push({_id: dbUtils.stringToObjectId(userTags[i]._id)});
+                      userTagsToCommit.push({
+                        query: {_id: dbUtils.stringToObjectId(userTags[i]._id)},
+                        fks: [{fieldName: 'posts', value: commitedPost._id}]
+                      });
                    }
                    logger.info(scope.TAG, "Hash tags to commit: " + JSON.stringify(hashTagsToCommit));
                    hashTagORMObject.batchUpsert(hashTagsToCommit, function() {
@@ -58,7 +61,7 @@ var FeedService = function(user) {
                             commitedPost.hashTags.push(hashTagsToCommit[i].record._id);
                          }
                          for (var i = 0; i < userTagsToCommit.length; i++) {
-                            commitedPost.userTags.push(userTagsToCommit[i]);
+                            commitedPost.userTags.push(userTagsToCommit[i].query._id);
                          }
                          postORMObject.save(commitedPost, function(savedPost) {
                             onSuccess(savedPost);

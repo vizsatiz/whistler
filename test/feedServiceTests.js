@@ -6,6 +6,7 @@ var errorCodes = require('./../constants/errorConstants.js')
 
 var userORMObject = ormManager.getORMObject('user');
 var postORMObject = ormManager.getORMObject('post');
+var hashTagORMObject = ormManager.getORMObject('hashTag');
 
 describe('Feed services tests', function() {
   describe('Feed service negative tests', function() {
@@ -56,6 +57,10 @@ describe('Feed services tests', function() {
     beforeEach(function() {
         userORMObject.drop(function () {
           postORMObject.drop(function () {
+            hashTagORMObject.drop(function () {
+            }, function(error) {
+              done(error);
+            });
           }, function(error) {
             done(error);
           });
@@ -110,7 +115,17 @@ describe('Feed services tests', function() {
              assert.equal(committedPost.message, 'New post created');
              assert.equal(committedPost.hashTags.length, 1);
              assert.equal(committedPost.userTags.length, 1);
-             done();
+             userORMObject.read({_id: user._id}, [], function (readUser) {
+                assert.equal(readUser[0].posts.length, 1);
+                hashTagORMObject.read({_id: '#testHash'}, [], function (readHashTags) {
+                   assert.equal(readHashTags[0].posts.length,  1);
+                   done();
+                }, function(error) {
+                    done(error);
+                });
+             }, function(error) {
+                done(error);
+             });
           }, function(error) {
             done(error);
           });
