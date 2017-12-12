@@ -8,7 +8,7 @@ var postSchema = mongoose.Schema({
     version: String,
     userTags: [{type: ObjectId, ref: 'user'}],
     comments: [{type: ObjectId, ref: 'comment'}],
-    hashTags: [{type: ObjectId, ref: 'hashTag'}],
+    hashTags: [{type: String, ref: 'hashTag'}],
     user: {type: ObjectId, ref: 'user'},
     createdAt: Date,
     updatedAt: Date
