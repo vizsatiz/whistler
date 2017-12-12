@@ -8,6 +8,7 @@ var userORMObject = ormManager.getORMObject('user');
 var postORMObject = ormManager.getORMObject('post');
 var hashTagORMObject = ormManager.getORMObject('hashTag');
 
+
 describe('Feed services tests', function() {
   describe('Feed service negative tests', function() {
 
