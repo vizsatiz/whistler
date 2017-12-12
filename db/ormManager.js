@@ -113,12 +113,25 @@ var ORMObject = function(modelName) {
     this.batchUpsert = function(records, onSuccess, onFailure) {
         var scope = this;
         async.each(records, function(record, callback) {
-            scope._model.findOneAndUpdate(record, record, {upsert:true}, function(err, doc){
+            scope._model.findOneAndUpdate(record.record, record.record, {upsert:true, new: true}, function(err, doc){
                 if(err){
                  return callback(err);
                 }
                 logger.info(scope.TAG, "Updating the batch upsert record: " + JSON.stringify(doc));
-                return callback();
+                var fks = record.fks;
+                if (fks && fks.length > 0) {
+                  for (var i = 0; i < fks.length; i++) {
+                    (doc[fks[i].fieldName]).push(fks[i].value);
+                  }
+                  scope.save(doc, function(rec) {
+                     return callback();
+                  }, function(error) {
+                     logger.error(scope.TAG, "Error while ORM bulk upsert while saving with pk: " + JSON.stringify(err));
+                     return callback(error);
+                  });
+                } else {
+                  return callback();
+                }
             });
         }, function(err){
             if(err){

@@ -37,7 +37,10 @@ var FeedService = function(user) {
                    for (var i = 0; i < hashTags.length; i++) {
                       var hashTagValidations = isValidatePostHashTag(hashTags[i]);
                       if (hashTagValidations.status) {
-                         hashTagsToCommit.push({_id: hashTags[i], name: hashTags[i]});
+                         hashTagsToCommit.push({
+                           record: {_id: hashTags[i], name: hashTags[i]},
+                           fks: [{fieldName: 'posts', value: commitedPost._id}]
+                         });
                       }
                    }
                    var userTagsToCommit = [];
@@ -52,7 +55,7 @@ var FeedService = function(user) {
                       userORMObject.batchRecordExistenceCheck(userTagsToCommit, function() {
                          logger.info(scope.TAG, "All user tags and hash tags verified .. proceeding to create post.");
                          for (var i = 0; i < hashTagsToCommit.length; i++) {
-                            commitedPost.hashTags.push(hashTagsToCommit[i]._id);
+                            commitedPost.hashTags.push(hashTagsToCommit[i].record._id);
                          }
                          for (var i = 0; i < userTagsToCommit.length; i++) {
                             commitedPost.userTags.push(userTagsToCommit[i]);

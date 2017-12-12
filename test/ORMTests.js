@@ -308,7 +308,8 @@ describe('[Async] Mongoose db object tests for batch async inserts', function() 
      });
 
      it('Create multiple hashTags with async and add them to post ..', function(done) {
-         hashTagORMObject.batchUpsert([{_id:'#triumph1', name:'#triumph1'}, {_id:'#triumph2', name:'#triumph2'}, {_id:'#triumph2', name:'#triumph2'}], function() {
+         hashTagORMObject.batchUpsert([{record:{_id:'#triumph1', name:'#triumph1'}},
+         {record:{_id:'#triumph2', name:'#triumph2'}}, {record:{_id:'#triumph2', name:'#triumph2'}}], function() {
              hashTagORMObject.read({}, [], function(hashTags) {
                  assert.equal(hashTags.length, 2);
                  done();
