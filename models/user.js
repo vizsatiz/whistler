@@ -8,6 +8,8 @@ var userSchema = mongoose.Schema({
     password: String,
     version: String,
     posts: [{type: ObjectId, ref: 'post'}],
+    follows: [{type: ObjectId, ref: 'user'}],
+    followers: [{type: ObjectId, ref: 'user'}],
     createdAt: Date,
     updatedAt: Date
 });

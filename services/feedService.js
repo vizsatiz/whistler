@@ -13,6 +13,31 @@ var FeedService = function(user) {
     this._user = user;
     this.TAG = "FeedService";
 
+    this.getPostsForCurrentUsersFeed = function(onSuccess, onFailure) {
+      var scope = this;
+      var userValidation = isValidUser(scope._user);
+      if (!userValidation.status) {
+          logger.error(scope.TAG, "Post feed cannot be queried for null/empty user");
+          onFailure({
+              code: errorCodes.INVALID_POST_USER,
+              message: userValidation.errorMessage
+          });
+          return -1;
+      }
+      var usersCurrentUserFollows = scope._user.follows;
+      userORMObject.read({_id: scope._user._id}, [{path: 'follows', populate: {path: 'posts', populate: 'comments'}}], function(users) {
+         logger.info(scope.TAG, "Successfully fetched all the posts of all users who follow: " + scope._user.name);
+         // TODO maybe sorting ??
+         onSuccess(users[0].follows);
+      }, function(error) {
+        logger.error(scope.TAG, "Error while fetching feed for the user: " + scope._user.name);
+        onFailure({
+            code: errorCodes.POST_FEED_READ_ERROR,
+            message: 'ORM Error while reading the feed for user: ' + scope._user.name
+        });
+      });
+    };
+
     // method creates post for current user and adds hash tags and users to the same
     this.createPostForCurrentUser = function(post, onSuccess, onFailure)  {
         var scope = this;
@@ -30,7 +55,7 @@ var FeedService = function(user) {
             if (post.hashTags && post.userTags) {
                 var hashTags = post.hashTags;
                 var userTags = post.userTags;
-                var postToCommit = {message: post.message, user: scope._user.user_id};
+                var postToCommit = {message: post.message, user: scope._user._id};
                 postORMObject.create(postToCommit, function(commitedPost) {
                    logger.info(scope.TAG, "Created post .. going ahead to create hashTags and userTags");
                    var hashTagsToCommit = [];
@@ -107,10 +132,34 @@ var FeedService = function(user) {
                 message: messageValidations.errorMessage
             });
         }
-    }
+    };
 
-    this.getFeedsWhereCurrentUserIsTagged = function() {
-        // TODO
+    this.getFeedsWhereCurrentUserIsTagged = function(onSuccess, onFailure) {
+        var scope = this;
+        userORMObject.read({_id: scope._user._id}, [{path: 'posts'}], function(user){
+           logger.info("Success fetching posts in which current user is tagged in");
+           onSuccess(user.posts);
+        }, function(error){
+          logger.error(scope.TAG, "getFeedsWhereCurrentUserIsTagged: Error while reading posts: " + JSON.stringify(error));
+           onFailure({
+              code: errorCodes.POST_TAGGED_POST_READ_ERROR,
+              message: 'ORM error while reading posts'
+           });
+        });
+    };
+
+    this.getFeedsCreatedByCurrentUser = function(onSuccess, onFailure) {
+      var scope = this;
+      postORMObject.read({user: scope._user._id}, [{path: 'comment'}], function(posts) {
+        logger.info(scope.TAG, "Success fetching posts which are created by current user");
+        onSuccess(posts);
+      }, function(error) {
+        logger.error(scope.TAG, "getFeedsCreatedByCurrentUser: Error while reading posts: " + JSON.stringify(error));
+         onFailure({
+            code: errorCodes.POST_TAGGED_POST_READ_ERROR,
+            message: 'ORM error while reading posts'
+         });
+      });
     };
 
     var isValidatePostMessage = function(message) {
