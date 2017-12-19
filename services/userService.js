@@ -48,6 +48,13 @@ var UserService = function(user) {
               errorMessage: 'Username/password cannot be null or empty'
           }
         }
+        if (user.name.length < 4 || user.password.length < 4) {
+          return {
+              status: false,
+              errorMessage: 'Username/password should have atleast length of 3'
+          }
+        }
+        // TODO fix the regex for password
         if(!(/^[a-zA-Z0-9_@]*$/.test(user.name)) || !(/^[a-zA-Z0-9_@]*$/.test(user.password))) {
           return {
               status: false,
@@ -62,3 +69,5 @@ var UserService = function(user) {
   }
 
 }
+
+module.exports = UserService;
