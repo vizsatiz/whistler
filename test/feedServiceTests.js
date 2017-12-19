@@ -117,7 +117,7 @@ describe('Feed services tests', function() {
              assert.equal(committedPost.hashTags.length, 1);
              assert.equal(committedPost.userTags.length, 1);
              userORMObject.read({_id: user._id}, [], function (readUser) {
-                assert.equal(readUser[0].posts.length, 1);
+                assert.equal(readUser[0].taggedPosts.length, 1);
                 hashTagORMObject.read({_id: '#testHash'}, [], function (readHashTags) {
                    assert.equal(readHashTags[0].posts.length,  1);
                    done();
@@ -165,6 +165,30 @@ describe('Feed services tests', function() {
              assert.equal(committedPost.hashTags.length, 0);
              assert.equal(committedPost.userTags.length, 1);
              feedSvc.getFeedsCreatedByCurrentUser(function(posts) {
+                assert.equal(posts.length, 1);
+                done();
+             }, function(error) {
+               done(error);
+             });
+          }, function(error) {
+            done(error);
+          });
+      }, function (error) {
+          done(error);
+      });
+    });
+
+    it('Create post and test getFeedsWhereCurrentUserIsTagged', function(done) {
+      userORMObject.create({name: "testName"}, function (user) {
+          assert.equal('testName', user.name);
+          var feedSvc = new feedService(user);
+          var post = {message: 'New post created',
+            hashTags: [], userTags:[{_id: user._id.toHexString(), name:'testName'}]};
+          feedSvc.createPostForCurrentUser(post, function(committedPost){
+             assert.equal(committedPost.message, 'New post created');
+             assert.equal(committedPost.hashTags.length, 0);
+             assert.equal(committedPost.userTags.length, 1);
+             feedSvc.getFeedsWhereCurrentUserIsTagged(function(posts) {
                 assert.equal(posts.length, 1);
                 done();
              }, function(error) {
