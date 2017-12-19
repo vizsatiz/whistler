@@ -16,7 +16,8 @@
     "dependencies": {
         "mongoose": "~4.13.5",
         "bluebird": "~3.5.1",
-        "winston": "~3.0.0-rc1"
+        "winston": "~3.0.0-rc1",
+        "async": "~2.3.0"
     },
     "devDependencies": {
         "mocha": "~4.0.1"
