@@ -14,6 +14,10 @@ describe('Feed services tests', function() {
 
     beforeEach(function() {
         userORMObject.drop(function () {
+          hashTagORMObject.drop(function () {
+          }, function(error) {
+            done(error);
+          });
         }, function(error) {
           done(error);
         });
@@ -51,9 +55,33 @@ describe('Feed services tests', function() {
       });
     });
 
+    it('Create post with userTags and with hashTags and query by getFeedsByHashTag with wrong hashTag', function(done) {
+      userORMObject.create({name: "testName"}, function (user) {
+          assert.equal('testName', user.name);
+          var feedSvc = new feedService(user);
+          var post = {message: 'New post created',
+            hashTags: ["#testHash"], userTags:[{_id: user._id.toHexString(), name:'testName'}]};
+          feedSvc.createPostForCurrentUser(post, function(committedPost){
+             assert.equal(committedPost.message, 'New post created');
+             assert.equal(committedPost.hashTags.length, 1);
+             assert.equal(committedPost.userTags.length, 1);
+             feedSvc.getFeedsByHashTag('#sdeffrf', function(posts) {
+               done('Returned posts for wrong hashTag');
+             }, function(error) {
+               assert.equal(errorCodes.POST_HASH_TAG_NOT_FOUND, error.code);
+               done();
+             });
+          }, function(error) {
+            done(error);
+          });
+      }, function (error) {
+          done(error);
+      });
+    });
+
   });
 
-  describe('Feed service positive tests', function() {
+  describe.only('Feed service positive tests', function() {
 
     beforeEach(function() {
         userORMObject.drop(function () {
@@ -192,6 +220,75 @@ describe('Feed services tests', function() {
                 assert.equal(posts.length, 1);
                 done();
              }, function(error) {
+               done(error);
+             });
+          }, function(error) {
+            done(error);
+          });
+      }, function (error) {
+          done(error);
+      });
+    });
+
+    it('Create post with userTags and with hashTags and query by getFeedsByHashTag', function(done) {
+      userORMObject.create({name: "testName"}, function (user) {
+          assert.equal('testName', user.name);
+          var feedSvc = new feedService(user);
+          var post = {message: 'New post created',
+            hashTags: ["#testHash"], userTags:[{_id: user._id.toHexString(), name:'testName'}]};
+          feedSvc.createPostForCurrentUser(post, function(committedPost){
+             assert.equal(committedPost.message, 'New post created');
+             assert.equal(committedPost.hashTags.length, 1);
+             assert.equal(committedPost.userTags.length, 1);
+             feedSvc.getFeedsByHashTag('#testHash', function(posts) {
+               assert.equal(posts.length, 1);
+               assert.equal(posts[0].message, 'New post created');
+               done();
+             }, function(error) {
+               done(error);
+             });
+          }, function(error) {
+            done(error);
+          });
+      }, function (error) {
+          done(error);
+      });
+    });
+
+    it('Create post with userTags and with hashTags and then update', function(done) {
+      userORMObject.create({name: "testName"}, function (user) {
+          assert.equal('testName', user.name);
+          var feedSvc = new feedService(user);
+          var post = {message: 'New post created',
+            hashTags: ["#testHash"], userTags:[{_id: user._id.toHexString(), name:'testName'}]};
+          feedSvc.createPostForCurrentUser(post, function(committedPost){
+             assert.equal(committedPost.message, 'New post created');
+             assert.equal(committedPost.hashTags.length, 1);
+             assert.equal(committedPost.hashTags[0], '#testHash');
+             assert.equal(committedPost.userTags.length, 1);
+             feedSvc.updateFeedForCurrentUser({
+               _id: committedPost._id.toHexString(),
+               message: 'Updated Message',
+               hashTags: ["#testHashUpdate"],
+               userTags: []
+             }, function(savedPost) {
+               assert.equal(savedPost.message, 'Updated Message');
+               assert.equal(savedPost.hashTags.length, 1);
+               assert.equal(savedPost.hashTags[0], '#testHashUpdate');
+               assert.equal(savedPost.userTags.length, 0);
+               feedSvc.updateFeedForCurrentUser({
+                 _id: committedPost._id.toHexString(),
+                 userTags: [{_id: user._id.toHexString(), name:'testName'}]
+               }, function(savedPost) {
+                 assert.equal(savedPost.message, 'Updated Message');
+                 assert.equal(savedPost.hashTags.length, 1);
+                 assert.equal(savedPost.hashTags[0], '#testHashUpdate');
+                 assert.equal(savedPost.userTags.length, 1);
+                 done();
+               }, function (error) {
+                 done(error);
+               });
+             }, function (error) {
                done(error);
              });
           }, function(error) {

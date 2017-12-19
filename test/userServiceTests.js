@@ -6,7 +6,7 @@ var errorCodes = require('./../constants/errorConstants.js');
 
 describe('User services tests', function() {
   describe('User service negative tests', function() {
-    it('Create user service with empty user name', function(done) {
+    it('Create user with empty user name', function(done) {
       var userSvc = new userService({
         name: ''
       });
@@ -19,7 +19,7 @@ describe('User services tests', function() {
       });
     });
 
-    it('Create user service with wrong user name length', function(done) {
+    it('Create user with wrong user name length', function(done) {
       var userSvc = new userService({
         name: 'sc',
         password: 'sd'
@@ -33,7 +33,7 @@ describe('User services tests', function() {
       });
     });
 
-    it('Create user service with wrong password length', function(done) {
+    it('Create user with wrong password length', function(done) {
       var userSvc = new userService({
         name: 'sdec',
         password: 's'
@@ -47,7 +47,7 @@ describe('User services tests', function() {
       });
     });
 
-    it('Create user service with wrong name format', function(done) {
+    it('Create user with wrong name format', function(done) {
       var userSvc = new userService({
         name: 'sdecw 3e3',
         password: 'sdwdewf'
@@ -61,7 +61,7 @@ describe('User services tests', function() {
       });
     });
 
-    it('Create user service with wrong password format', function(done) {
+    it('Create user with wrong password format', function(done) {
       var userSvc = new userService({
         name: 'sdecw3e3',
         password: 'scde ecde'
@@ -77,7 +77,7 @@ describe('User services tests', function() {
   });
 
   describe('User service positive tests', function() {
-    it('Create user service with correct username and password', function(done) {
+    it('Create user with correct username and password', function(done) {
       var userSvc = new userService({
         name: 'sdecw3e3',
         password: 'scde2ecde'
@@ -91,5 +91,35 @@ describe('User services tests', function() {
         done(error);
       });
     });
+
+    it('Create user with correct username and password and follow another user', function(done) {
+      var userSvc = new userService({
+        name: 'sdecw3e3',
+        password: 'scde2ecde'
+      });
+      userSvc.createUser(function(user) {
+        assert.equal(user.name, 'sdecw3e3');
+        assert.equal(user.follows.length , 1);
+        assert.equal(user.follows[0] , user._id);
+        var userSvc2 = new userService({
+          name: 'sdesdecw3e3',
+          password: 'scdwde2ecde'
+        });
+        userSvc2.createUser(function(user2) {
+          userSvc2.followUsers([user._id], function(savedUser) {
+            assert.equal(user2.name, 'sdesdecw3e3');
+            assert.equal(user2.follows.length , 2);
+            done();
+          }, function(error) {
+            done(error);
+          })
+        }, function(error) {
+          done(error);
+        });
+      }, function(error) {
+        done(error);
+      });
+    });
+
   });
 });

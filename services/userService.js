@@ -23,6 +23,7 @@ var UserService = function(user) {
         user.follows.push(user._id);
         userORMObject.save(user, function() {
           logger.info(scope.TAG, "Successfully created the user: "  + user.name);
+          scope._user = user;
           onSuccess(user);
         }, function(error) {
           logger.error(scope.TAG, "Error while self reference for the user: "  + scope._user.name);
@@ -33,7 +34,33 @@ var UserService = function(user) {
         onFailure(error);
       });
     }
-  }
+  };
+
+  this.followUsers = function(idsOfUserToFollow, onSuccess, onFailure) {
+    var scope = this;
+    userORMObject.read({_id: {$in: idsOfUserToFollow}}, [], function(usersToFollow) {
+      if (usersToFollow.length == 0) {
+        logger.error(scope.TAG, "No user found for following (id) : "  + idsOfUserToFollow);
+        onFailure({
+          code: errorCodes.USER_NOT_FOUND_TO_FOLLOW,
+          message: 'User trying to follow is not found'
+        });
+      } else {
+        for (var i = 0; i < usersToFollow.length; i++) {
+          scope._user.follows.push(usersToFollow[i]._id);
+        }
+        userORMObject.save(scope._user, function(savedUser) {
+          onSuccess(savedUser);
+        }, function(error) {
+          logger.error(scope.TAG, "Error while trying to follow user with id " + idOfUserToFollow);
+          onFailure(error);
+        });
+      }
+    }, function(error) {
+      logger.error(scope.TAG, "Error while reading user to follow (id) : "  + idOfUserToFollow);
+      onFailure(error);
+    });
+  };
 
   var isValidUser = function(user) {
       if(!user) {

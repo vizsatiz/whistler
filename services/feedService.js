@@ -159,7 +159,7 @@ var FeedService = function(user) {
 
     this.getFeedsCreatedByCurrentUser = function(onSuccess, onFailure) {
       var scope = this;
-      postORMObject.read({user: scope._user._id}, [{path: 'comment'}], function(posts) {
+      postORMObject.read({user: scope._user._id}, [{path: 'comments'}], function(posts) {
         logger.info(scope.TAG, "Success fetching posts which are created by current user");
         onSuccess(posts);
       }, function(error) {
@@ -170,6 +170,113 @@ var FeedService = function(user) {
          });
       });
     };
+
+    this.getFeedsByHashTag = function(hashTag, onSuccess, onFailure) {
+      var scope = this;
+      hashTagORMObject.read({_id: hashTag}, [{path: 'posts'}], function(hashTags) {
+        if(!hashTags || hashTags.length == 0) {
+          logger.error(scope.TAG, "No hashtag found: " + hashTag);
+          onFailure({
+             code: errorCodes.POST_HASH_TAG_NOT_FOUND,
+             message: 'No hashtags named: ' + hashTag
+          });
+        } else {
+          logger.info(scope.TAG, "Success reading posts for hashtag: " + hashTag);
+          var hashTaggedPosts = hashTags[0].posts;
+          onSuccess(hashTaggedPosts);
+        }
+      }, function(error) {
+        logger.error(scope.TAG, "No hashtag found: " + hashTag);
+        onFailure({
+           code: errorCodes.POST_HASH_TAGGED_POSTS,
+           message: 'ORM error while reading posts for given hashTag'
+        });
+      });
+    }
+
+    this.updateFeedForCurrentUser = function(post, onSuccess, onFailure) {
+      var scope = this;
+      postORMObject.read({_id: dbUtils.stringToObjectId(post._id)}, [], function(posts) {
+        if (!posts || posts.length === 0) {
+          logger.error(scope.TAG, "Post to update not found");
+          onFailure({
+             code: errorCodes.POST_TO_UPDATE_NOT_FOUND,
+             message: 'The post to update is not found'
+          });
+        } else {
+          var postToUpdate = posts[0];
+          var hashTags = post.hashTags;
+          var userTags = post.userTags;
+          if (post.message) {
+            postToUpdate.message = post.message;
+          }
+          var hashTagsToCommit = [];
+          if (hashTags) {
+            postToUpdate.hashTags = [];
+            for (var i = 0; i < hashTags.length; i++) {
+               var hashTagValidations = isValidatePostHashTag(hashTags[i]);
+               if (hashTagValidations.status) {
+                  hashTagsToCommit.push({
+                    record: {_id: hashTags[i], name: hashTags[i]},
+                    fks: [{fieldName: 'posts', value: postToUpdate._id}]
+                  });
+               }
+            }
+          }
+          var userTagsToCommit = [];
+          if (userTags) {
+            postToUpdate.userTags = [];
+            for (var i = 0; i < userTags.length; i++) {
+               if (!userTags[i]._id) {
+                 logger.error('User tag found without id: ' + JSON.stringify(userTags[i]));
+               }
+               userTagsToCommit.push({
+                 query: {_id: dbUtils.stringToObjectId(userTags[i]._id)},
+                 fks: [{fieldName: 'taggedPosts', value: postToUpdate._id}]
+               });
+            }
+          }
+          hashTagORMObject.batchUpsert(hashTagsToCommit, function() {
+             userORMObject.batchRecordExistenceCheck(userTagsToCommit, function() {
+                logger.info(scope.TAG, "All user tags and hash tags verified .. proceeding to update post.");
+                for (var i = 0; i < hashTagsToCommit.length; i++) {
+                   postToUpdate.hashTags.push(hashTagsToCommit[i].record._id);
+                }
+                for (var i = 0; i < userTagsToCommit.length; i++) {
+                   postToUpdate.userTags.push(userTagsToCommit[i].query._id);
+                }
+                postORMObject.save(postToUpdate, function(savedPost) {
+                   onSuccess(savedPost);
+                }, function (error) {
+                  logger.error(scope.TAG, "Error while updating post: " + JSON.stringify(error));
+                  onFailure({
+                      code: errorCodes.POST_USERTAG_HASHTAG_ORM_UPDATE_ERROR,
+                      message: 'ORM error updating user tags and hash tags'
+                  });
+                });
+             }, function(error) {
+                 logger.error(scope.TAG, "Error while user batch check: " + JSON.stringify(error));
+                 onFailure({
+                     code: errorCodes.POST_USERTAG_ORM_CHECK_ERROR,
+                     message: 'ORM error checking for user tag existence'
+                 });
+             });
+          }, function(error) {
+              logger.error(scope.TAG, "Error while creating post with hash tags: " + JSON.stringify(error));
+              onFailure({
+                  code: errorCodes.POST_HASTAG_ORM_UPSERT_ERROR,
+                  message: 'ORM error while creating post'
+              });
+          });
+        }
+      }, function(error) {
+        logger.error(scope.TAG, "Error while fetching post for updating");
+        onFailure({
+           code: errorCodes.POST_READ_TO_UPDATE_POST_FAILED,
+           message: 'ORM error while reading posts for updating'
+        });
+      });
+    }
 
     var isValidatePostMessage = function(message) {
        if (!message) {
